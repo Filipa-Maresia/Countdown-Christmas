@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas Countdown</title>
+
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 50px;
+      }
+
+      h1 {
+        color: #e44d26;
+      }
+
+      h2 {
+        color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎄COUNTDOWN TO CHRISTMAS🎄</h1>
+    <h2 id="countdown"></h2>
+
+    <script>
+      // Set the date for Christmas
+      const christmasDate = new Date("December 25, 2023 00:00:00").getTime();
+
+      // Update the countdown every second
+      const updateCountdown = () => {
+        const currentDate = new Date().getTime();
+        const timeDifference = christmasDate - currentDate;
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById(
+          "countdown"
+        ).innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        // If the countdown has reached zero, display a message
+        if (timeDifference <= 0) {
+          document.getElementById("countdown").innerHTML = "Merry Christmas!";
+        }
+      };
+
+      // Update the countdown immediately upon loading the page
+      updateCountdown();
+
+      // Update the countdown every second
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
